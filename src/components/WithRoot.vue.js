@@ -9,10 +9,8 @@ export default {
     const { children, props } = context;
 
     if (props.showIf) {
-      console.log(props.showIf);
       return children;
     } else {
-      console.log(props.showIf);
       return children
         .map(child => {
           if (child.children) return child.children;
