@@ -21,13 +21,14 @@
           position="top"
         >
           <v-row no-gutters>
-            <v-col>
+            <v-col cols="12" sm="auto">
               <h1 :style="textSize">Ultra Via Lit</h1>
             </v-col>
-            <v-col align="right">
+            <v-spacer></v-spacer>
+            <v-col cols="12" sm="auto" align-self="end">
               <iframe
                 src="https://open.spotify.com/embed/artist/4BnxnyUhIr7TVm5p6tBWU6"
-                width="375"
+                :width="spotifyWidth"
                 height="400"
                 frameborder="0"
                 allowtransparency="true"
@@ -79,6 +80,22 @@ export default {
           return true;
         case "xl":
           return true;
+      }
+      return "1em";
+    },
+
+    spotifyWidth() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "100%";
+        case "sm":
+          return "100%";
+        case "md":
+          return "400px";
+        case "lg":
+          return "400px";
+        case "xl":
+          return "400px";
       }
       return "1em";
     }
