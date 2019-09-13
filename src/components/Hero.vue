@@ -1,18 +1,17 @@
 <template>
   <div class="hero">
     <v-responsive width="100%">
-      <v-row no-gutters v-if="this.$vuetify.breakpoint.name == 'xs'">
+      <v-row no-gutters v-if="!$vuetify.breakpoint.mdAndUp">
         <v-col>
           <v-img
             alt="hero splash image"
-            height="100%"
             contain
             :src="require('../assets/hero.jpg')"
             position="top"
           ></v-img>
         </v-col>
       </v-row>
-      <With-Root :showIf="checkSizeGreaterThanSM">
+      <With-Root :showIf="$vuetify.breakpoint.mdAndUp">
         <v-img
           alt="hero splash image"
           height="100%"
@@ -21,18 +20,21 @@
           position="top"
         >
           <v-row no-gutters>
-            <v-col cols="12" sm="auto">
-              <h1 :style="textSize">Ultra Via Lit</h1>
+            <v-col cols="12" md="auto">
+              <h1 :class="currentBreakpoint" v-bind:style="dynamicTopLeftPadding">Ultra Via Lit</h1>
             </v-col>
             <v-spacer></v-spacer>
-            <v-col cols="12" sm="auto" align-self="end">
+            <v-col cols="12" md="auto" align-self="end">
               <iframe
                 src="https://open.spotify.com/embed/artist/4BnxnyUhIr7TVm5p6tBWU6"
+                id="spotify-frame"
+                :class="currentBreakpoint"
                 :width="spotifyWidth"
                 height="400"
                 frameborder="0"
                 allowtransparency="true"
                 allow="encrypted-media"
+                v-bind:style="dynamicTopRightPadding"
               ></iframe>
             </v-col>
           </v-row>
@@ -44,6 +46,7 @@
 
 <script>
 import WithRoot from "./WithRoot.vue.js";
+const ratio = 0.03;
 export default {
   name: "Hero",
   props: {
@@ -53,37 +56,21 @@ export default {
     WithRoot
   },
   computed: {
-    textSize() {
-      switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return "font-size: 4em; text-align: center";
-        case "sm":
-          return "font-size: 4em; text-align: center";
-        case "md":
-          return "font-size: 6em";
-        case "lg":
-          return "font-size: 6em";
-        case "xl":
-          return "font-size: 6em";
-      }
-      return "1em";
+    currentBreakpoint() {
+      return this.$vuetify.breakpoint.name;
     },
-    checkSizeGreaterThanSM() {
-      switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return false;
-        case "sm":
-          return true;
-        case "md":
-          return true;
-        case "lg":
-          return true;
-        case "xl":
-          return true;
-      }
-      return "1em";
+    dynamicTopLeftPadding() {
+      if (this.$vuetify.breakpoint.mdAndUp)
+        return `padding-left: ${this.$vuetify.breakpoint.width * ratio}px;
+        padding-top: ${this.$vuetify.breakpoint.width * ratio - 36}px;`;
+      else return "";
     },
-
+    dynamicTopRightPadding() {
+      if (this.$vuetify.breakpoint.mdAndUp)
+        return `padding-right: ${this.$vuetify.breakpoint.width * ratio}px;
+        padding-top: ${this.$vuetify.breakpoint.width * ratio}px;`;
+      else return "";
+    },
     spotifyWidth() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
@@ -91,24 +78,58 @@ export default {
         case "sm":
           return "100%";
         case "md":
-          return "400px";
+          return "100%";
         case "lg":
           return "400px";
         case "xl":
           return "400px";
+        default:
+          return "100%";
       }
-      return "1em";
     }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 .hero {
   background-color: black;
 }
 h1 {
   color: whitesmoke;
+  &.xs {
+    font-size: 3em;
+    text-align: center;
+  }
+  &.sm {
+    font-size: 4em;
+    text-align: center;
+  }
+  &.md {
+    font-size: 6em;
+  }
+  &.lg {
+    font-size: 6em;
+  }
+  &.xl {
+    font-size: 6em;
+  }
+}
+#spotify-frame {
+  // &.xs {
+  // }
+  // &.sm {
+  // }
+  // &.md {
+  // }
+  &.lg {
+    padding-top: 10px;
+    padding-right: 10px;
+  }
+  &.xl {
+    padding-top: 10px;
+    padding-right: 10px;
+  }
 }
 </style>
