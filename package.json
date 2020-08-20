@@ -35,7 +35,8 @@
     "vue-template-compiler": "^2.6.12",
     "vuetify-loader": "^1.6.0"
   },
-  "pre-commit": {
-    "run": "lint && prettier"
-  }
+  "pre-commit": [
+    "lint",
+    "prettier"
+  ]
 }
