@@ -21,7 +21,12 @@
         >
           <v-row no-gutters>
             <v-col cols="12" md="auto">
-              <h1 :class="currentBreakpoint" v-bind:style="dynamicTopLeftPadding">Ultra Via Lit</h1>
+              <h1
+                :class="currentBreakpoint"
+                v-bind:style="dynamicTopLeftPadding"
+              >
+                Ultra Via Lit
+              </h1>
             </v-col>
             <v-spacer></v-spacer>
             <v-col cols="12" md="auto" align-self="end">
@@ -45,50 +50,50 @@
 </template>
 
 <script>
-import WithRoot from "./WithRoot.vue.js";
-const ratio = 0.03;
+import WithRoot from './WithRoot.vue.js'
+const ratio = 0.03
 export default {
-  name: "Hero",
+  name: 'Hero',
   props: {
-    msg: String
+    msg: String,
   },
   components: {
-    WithRoot
+    WithRoot,
   },
   computed: {
     currentBreakpoint() {
-      return this.$vuetify.breakpoint.name;
+      return this.$vuetify.breakpoint.name
     },
     dynamicTopLeftPadding() {
       if (this.$vuetify.breakpoint.mdAndUp)
         return `padding-left: ${this.$vuetify.breakpoint.width * ratio}px;
-        padding-top: ${this.$vuetify.breakpoint.width * ratio - 36}px;`;
-      else return "";
+        padding-top: ${this.$vuetify.breakpoint.width * ratio - 36}px;`
+      else return ''
     },
     dynamicTopRightPadding() {
       if (this.$vuetify.breakpoint.mdAndUp)
         return `padding-right: ${this.$vuetify.breakpoint.width * ratio}px;
-        padding-top: ${this.$vuetify.breakpoint.width * ratio}px;`;
-      else return "";
+        padding-top: ${this.$vuetify.breakpoint.width * ratio}px;`
+      else return ''
     },
     spotifyWidth() {
       switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return "100%";
-        case "sm":
-          return "100%";
-        case "md":
-          return "100%";
-        case "lg":
-          return "400px";
-        case "xl":
-          return "400px";
+        case 'xs':
+          return '100%'
+        case 'sm':
+          return '100%'
+        case 'md':
+          return '100%'
+        case 'lg':
+          return '400px'
+        case 'xl':
+          return '400px'
         default:
-          return "100%";
+          return '100%'
       }
-    }
-  }
-};
+    },
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

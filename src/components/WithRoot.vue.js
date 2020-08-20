@@ -2,23 +2,23 @@ export default {
   functional: true,
   name: 'With-Root',
   props: {
-    showIf: Boolean
+    showIf: Boolean,
   },
 
   render(h, context) {
-    const { children, props } = context;
+    const { children, props } = context
 
     if (props.showIf) {
-      return children;
+      return children
     } else {
       return children
-        .map(child => {
-          if (child.children) return child.children;
+        .map((child) => {
+          if (child.children) return child.children
           return child.componentOptions != null
             ? child.componentOptions.children
-            : null;
+            : null
         })
-        .filter(list => list); // remove any null and void
+        .filter((list) => list) // remove any null and void
     }
-  }
-};
+  },
+}
