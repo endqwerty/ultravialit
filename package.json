@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint --fix"
+    "lint": "vue-cli-service lint --fix",
+    "prettier": "prettier . --write"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -35,6 +36,6 @@
     "vuetify-loader": "^1.6.0"
   },
   "pre-commit": {
-    "run": "lint"
+    "run": "lint && prettier"
   }
 }
