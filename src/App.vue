@@ -7,15 +7,15 @@
 </template>
 
 <script>
-import Hero from './components/Hero'
+  import Hero from './components/Hero'
 
-export default {
-  name: 'App',
-  components: {
-    Hero,
-  },
-  data: () => ({
-    //
-  }),
-}
+  export default {
+    name: 'App',
+    components: {
+      Hero,
+    },
+    data: () => ({
+      //
+    }),
+  }
 </script>

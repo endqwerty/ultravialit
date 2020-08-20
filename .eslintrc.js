@@ -7,7 +7,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:vue/essential',
     'prettier',
-    'prettier/vue',
+    '@vue/prettier',
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
